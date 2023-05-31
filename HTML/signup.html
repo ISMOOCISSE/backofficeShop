@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inscription</title>
+
+    <style>
+        *{
+           margin: 0;
+           padding: 0;
+           box-sizing: border-box;
+       }
+       body{
+           background:black;
+           font-size: 30px;
+           font-family: Arial, Helvetica, sans-serif;
+           font-weight: bolder;
+       }
+       .wrapper{
+           width: 330px;
+           padding: 2rem 1rem;
+           margin: 50px auto;
+           background-color: #fff;
+           border-radius: 10px;
+           text-align: center;
+           box-shadow: 0 20px 35px rgba(0, 0, 0, 0.1);
+       }
+       h1{
+           font-size: 2rem;
+           color: rgb(75, 75, 5);
+           margin-bottom: 1.2rem;
+       }
+       form input{
+           width: 92%;
+           outline: none;
+           border: 1px solid #fff;
+           padding: 12px 20px;
+           margin-bottom: 10px;
+           border-radius: 20px;
+           background: #e4e4e4;
+       }
+       button{
+           font-size: 1rem;
+           margin-top: 1.8rem;
+           padding: 10px 0;
+           border-radius: 20px;
+           outline: none;
+           border: none;
+           width: 90%;
+           background: rgba(255, 255, 0, 0.484);
+           cursor: pointer;
+       }
+       button:hover{
+           background: yellow;
+       }
+       input:focus{
+           border: 1px solid rgb(192,192,192);
+       }
+       .terms{
+           margin-top: 0.2rem;
+       }
+       .terms input{
+           height: 1em;
+           width: 1em;
+           vertical-align: middle;
+           cursor: pointer;
+       }
+       .terms label{
+           font-size:0.7rem ;
+       
+       }
+       .terms a{
+       color:rgb(17,107,143) ;
+       text-decoration: none;
+       }
+       .member{
+           font-size: 0.8rem;
+           margin-top: 1.4rem;
+           color: #636363;
+       }
+       .member a{
+           color:rgb(91, 91, 1);
+           text-decoration: none;
+           
+       }
+
+       .droite{
+  display: flex;
+  flex-direction: row-reverse;
+  box-shadow: 0px 0px 100px 0px rgb(93, 93, 1);
+  height: 60px;
+}
+
+article{
+  border-radius: 6px;
+ 
+  color: rgb(143, 143, 3);
+  font-size: 20px;
+  text-align: center;
+  padding: 5px;
+}
+
+
+       
+           </style>
+</head>
+<body>
+    <div id="root"></div>
+    
+    <header class="droite">
+        <article>
+         <a href="signup.html" style="text-decoration: none;border-bottom: none;color:rgb(161, 161, 3);"> Inscription</a>
+        </article>
+        &nbsp;
+        <article>
+         <a href="login.html" style="text-decoration: none;border-bottom: none;color:rgb(161, 161, 3);"> Connexion</a>
+        </article>
+        
+      </header>
+
+
+
+    <div class="wrapper">
+      <h1>Inscription</h1>
+      <form onsubmit="signup(event)">
+          <div>
+              <input type="text" name="" placeholder="Nom " id="fullname">
+          </div>
+          <div>  
+              <input type="text" name="" placeholder="Contact" id="contact">
+          </div>
+          <div>  
+              <input type="text" name="" placeholder="Addresse" id="Address">
+          </div>
+          <div>
+              <input type="text" name="" placeholder="Email" id="email">
+          </div>
+          <div>
+              <input type="password" name="" placeholder="Mots de passe" id="password">
+          </div>
+          <div>
+              <input type="password" name="" placeholder="Mots de passe" id="copassword">
+          </div>
+          <div>
+              
+              <button  id="signupinp" value="Sign Up" class="btn">M'inscrire</button>
+
+              <div class="member">
+                  Deja un compte?<a href="login.html">Me connecter</a>
+              </div>
+          </div>
+      </form>
+  </div>
+  </body>
+  <script type="module">
+  // Import the functions you need from the SDKs you need
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/9.15.0/firebase-app.js";
+  import {
+    getAuth,
+    createUserWithEmailAndPassword,
+  } from "https://www.gstatic.com/firebasejs/9.15.0/firebase-auth.js";
+  // TODO: Add SDKs for Firebase products that you want to use
+  // https://firebase.google.com/docs/web/setup#available-libraries
+
+  // Your web app's Firebase configuration
+  const firebaseConfig = {
+    apiKey: "AIzaSyCxHg49e-IJto3hQvVp3sZ4ikAh5BC-zTQ",
+    authDomain: "module-2-t-all.firebaseapp.com",
+    projectId: "module-2-t-all",
+    storageBucket: "module-2-t-all.appspot.com",
+    messagingSenderId: "105200600055",
+    appId: "1:105200600055:web:fa378da333fae09f3d24f2"
+  };
+
+  // Initialize Firebase
+  const app = initializeApp(firebaseConfig);
+  const auth = getAuth()
+
+
+var fullName = document.getElementById("fullname");
+var contact = document.getElementById("contact");
+var email = document.getElementById("email");
+var password = document.getElementById("password");
+var copassword = document.getElementById("copassword")
+window.signup = function (e) {
+if(password)
+
+    if(fullName.value == "" || contact.value=="" || email.value =="" || password.value ==""){
+        alert("veuiller remplir tout les champs")
+    }
+    if(password.value == copassword.value){
+     
+    }
+    else{
+        alert("Mots de passe incorrect")
+        return false
+    }
+
+    e.preventDefault();
+    var obj = {
+      firstName: fullName.value,
+      contact: contact.value,
+      email: email.value,
+      password: password.value,
+    };
+  
+    createUserWithEmailAndPassword(auth, obj.email, obj.password)
+    .then(function(success){
+        window.location.replace('HTML/login.html')
+      // console.log(success.user.uid)
+      alert("inscription réussis")
+    })
+    .catch(function(err){
+      alert("Error in " + err)
+    });
+   console.log()
+    console.log(obj);
+  };
+
+  </script>
+</html>
